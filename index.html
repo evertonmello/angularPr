@@ -1,0 +1,66 @@
+<html ng-app="listaTelefonica">
+<meta charset="utf-8">
+<head>
+	<title>Lista</title>
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<link rel="stylesheet" href="lib/bootstrap-3.3.7-dist/css/bootstrap.css" type="text/css"></link>
+	<script src="lib/angular-1.6.4/angular.js"></script>
+	<script src="lib/angular-1.6.4/angular-messages.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/controllers/listaTelefonicaController.js"></script>
+	<script src="js/services/contatosAPIService.js"></script>	
+	<script src="js/services/generatorService.js"></script>	
+	<script src="js/config/generatorConfig.js"></script>
+	<script src="js/value/config.js"></script>	
+</head>
+<body ng-controller="listaCtrl">		
+		<div class="jumbotron">
+			<h4 ng-bind="	"></h4>				
+			<input ng-model="busca" placeholder="O que está buscando?" type="text" >
+			<table class="table table-striped">
+				<tr>
+					<th><a href="" ng-click="ordenarPor('nome')">Nome</th>
+					<th><a href="" ng-click="ordenarPor('Telefone')">Telefone</th>
+					<th><a href="" ng-click="ordenarPor('Operadora')">Operadora</th>
+					<th></th>					
+					<th>Data</th>
+				</tr>
+				<tr ng-repeat="contato in contatos | filter: busca | orderBy:criterio:direcao" ng-class="{selecionado:contato.selecionado}">
+					<td>{{contato.nome }}</td>	
+					<td>{{contato.telefone}}</td>
+					<td>{{contato.operadora.nome}}</td>
+					<th><input type="checkbox" ng-model="contato.selecionado"></th>
+					<td>{{contato.data | date}}</td>					
+				</tr>
+			</table>
+			<hr />
+
+			<form name="contatoForm">
+			<input class="form-control" type="text" name="nome" ng-model="contato.nome" ng-required="true" ng-minlength="10" placeholder="nome" />
+			<input class="form-control" type="text" name="telefone" ng-model="contato.telefone" ng-required="true" ng-pattern="/^\d{4,5}-\d{4}$/" placeholder="telefone" />
+			<select ng-model="contato.operadora" ng-options="operadora.nome + ' ' + (operadora.preco | currency) group by operadora.categoria for operadora in operadoras | orderBy: 'nome'">
+			<option value="">Selecione	</option>
+			</select>
+		</form>						
+			<div ng-messages="contatoForm.nome">
+				<div ng-message="$error.required && $dirty">
+						preencha o nome
+				</div>
+				<div ng-show="$error.minlength">
+					o nome deve ter no minimo x cars
+				</div>				
+			</div>
+			
+			<div ng-show="contatoForm.telefone.$error.required && contatoForm.telefone.$error.dirty">
+					preencha o telefone
+			</div>
+			<div ng-show="contatoForm.telefone.$error.pattern">
+					o campo telefone não está no padrao
+			</div>			
+			<hr />		
+			<button ng-click="addContact(contato)" ng-disabled="contatoForm.$invalid">Add contat</button>
+			<button ng-click="DelContat(contatos)" >Del contat</button>			
+	</div>
+	<div ng-include="'view/footer.html'"></div>
+</body>
+</html>
