@@ -1,0 +1,47 @@
+<div>		
+		<div class="jumbotron">
+		<ui-accordions>
+			<ui-accordion title="Accordion 1">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</ui-accordion>
+
+			<ui-accordion title="Accordion 2">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</ui-accordion>
+
+			<ui-accordion title="Accordion 3">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</ui-accordion>
+			
+			<ui-accordion title="Accordion 4">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</ui-accordion>
+
+			<ui-accordion title="Accordion 5">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</ui-accordion>
+		</ui-accordions>
+
+		<hr/>
+			<h4 ng-bind="	"></h4>				
+			<input ng-model="busca" placeholder="O que está buscando?" type="text" >
+			<table class="table table-striped">
+				<tr>
+					<th><a href="" ng-click="ordenarPor('nome')">Nome</th>
+					<th><a href="" ng-click="ordenarPor('Telefone')">Telefone</th>
+					<th><a href="" ng-click="ordenarPor('Operadora')">Operadora</th>
+					<th></th>					
+					<th>Data</th>
+				</tr>
+				<tr ng-repeat="contato in contatos | filter: busca | orderBy:criterio:direcao" ng-class="{selecionado:contato.selecionado}">
+					<td>{{contato.nome }}</td>	
+					<td>{{contato.telefone}}</td>
+					<td>{{contato.operadora.nome}}</td>
+					<th><input type="checkbox" ng-model="contato.selecionado"></th>
+					<td>{{contato.data | date}}</td>					
+				</tr>
+			</table>
+			<hr />  						
+			<a href="#/novoContato">Criar contato</a>
+</div>
+
