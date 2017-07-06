@@ -1,6 +1,14 @@
-angular.module("listaTelefonica").factory("contatosApi", function($http,config){
+angular.module("listaTelefonica").factory("contatosApi", function($http,config, $routeParams ){
 	var _getContatos = function(){
 		return $http.get(config.baseUrl);
+	};
+
+	var _getContato = function(id){		
+		return $http({
+			method: 'GET',
+			url: 'http://localhost:3000/' + id,									
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		});
 	};
 
 	var _saveContato = function(contato){
@@ -24,6 +32,7 @@ angular.module("listaTelefonica").factory("contatosApi", function($http,config){
 	return {
 		saveContato: _saveContato,
 		getOperadoras:_getOperadoras,
-		getContatos: _getContatos		
+		getContatos: _getContatos,
+		getContato: _getContato		
 	};
 });
