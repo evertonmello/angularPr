@@ -33,10 +33,10 @@
 					<th></th>					
 					<th>Data</th>
 				</tr>
-				<tr ng-repeat="contato in contatos | filter: busca | orderBy:criterio:direcao" ng-class="{selecionado:contato.selecionado}">
-					<td><a href="#/detalhes/{{contato.id+1}}">{{contato.nome }}</a></td>	
-					<td>{{contato.telefone}}</td>
-					<td>{{contato.operadora.nome}}</td>
+				<tr ng-repeat="contato in contatos | filter: busca | orderBy:criterio:direcao track by contato.id" ng-class="{selecionado:contato.selecionado}">
+					<td><a href="#/detalhes/{{contato.id+1}}">{{::contato.nome }}</a></td>	
+					<td>{{::contato.telefone}}</td>
+					<td>{{::contato.operadora.nome}}</td>
 					<th><input type="checkbox" ng-model="contato.selecionado"></th>
 					<td>{{contato.data | date}}</td>					
 				</tr>
